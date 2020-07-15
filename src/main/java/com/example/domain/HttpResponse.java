@@ -6,9 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class HttpResponse {
 
@@ -16,4 +20,14 @@ public class HttpResponse {
     private HttpStatus httpStatus;
     private String reason;
     private String message;
+    private String timeStamp;
+
+    public HttpResponse(int httpStatusCode, HttpStatus httpStatus, String reason, String message) {
+        this.httpStatusCode = httpStatusCode;
+        this.httpStatus = httpStatus;
+        this.reason = reason;
+        this.message = message;
+        this.timeStamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-YYYY HH:mm:ss a"));
+
+    }
 }

@@ -14,6 +14,11 @@ public class UserPrincipal implements UserDetails {
 
     private User user;
 
+    public UserPrincipal(User user) {
+        this.user = user;
+    }
+    public UserPrincipal(){}
+
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return stream(user.getAuthorities())
                 .map(SimpleGrantedAuthority::new)
